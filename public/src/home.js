@@ -20,7 +20,7 @@ function getMostPopularAuthors(books, authors) {
     return { name: `${author.name.first} ${author.name.last}`, count };
   });
 
-  const sortedAuthors = authorCounts.sort((a, b) => b.count - a.count);
+  const sortedAuthors = authorCounts.sort((authorA, authorB) => authorB.count - authorA.count);
   return sortedAuthors.slice(0, 5);
 }
 
@@ -38,7 +38,7 @@ function getMostCommonGenres(books) {
   const genreNamesAndCount = Object.keys(count).map((name) => {
     return { name, count: count[name] };
   });
-  const sorted = genreNamesAndCount.sort((a, b) => b.count - a.count);
+  const sorted = genreNamesAndCount.sort((sortedA, sortedB) => sortedB.count - sortedA.count);
   return sorted.slice(0, 5);
 }
 
@@ -54,7 +54,7 @@ function getMostPopularBooks(books) {
     };
     result.push(bookObject);
   }
-  const sorted = result.sort((a, b) => b.count - a.count);
+  const sorted = result.sort((resultA, resultB) => resultB.count - resultA.count);
    return sorted.slice(0, 5);
 }
 
@@ -80,7 +80,7 @@ function getMostPopularAuthors(books, authors) {
     return { name: `${author.name.first} ${author.name.last}`, count };
   });
 
-  const sortedAuthors = authorCounts.sort((a, b) => b.count - a.count);
+  const sortedAuthors = authorCounts.sort((authorA, authorB) => authorB.count - authorA.count);
   return sortedAuthors.slice(0, 5);
 }
 

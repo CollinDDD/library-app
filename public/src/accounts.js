@@ -3,7 +3,7 @@ return accounts.find((account) => account.id === id)
 }
 
 function sortAccountsByLastName(accounts) {
-  return accounts.sort((a, b) => a.name.last.toLowerCase().localeCompare(b.name.last.toLowerCase()))
+  return accounts.sort((accountA, accountB) => accountA.name.last.toLowerCase().localeCompare(accountB.name.last.toLowerCase()))
 }
 
 function getTotalNumberOfBorrows(account, books) {
