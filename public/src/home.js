@@ -1,10 +1,11 @@
-function getTotalBooksCount(books) {
+const getTotalBooksCount = (books) => {
   let total = 0;
   for (let i = 0; i < books.length; i++) {
     total = total + 1;
   }
   return total;
-}
+};
+
 
 function getTotalAccountsCount(accounts) {
   let total = 0;
@@ -14,15 +15,6 @@ function getTotalAccountsCount(accounts) {
   return total;
 }
 
-function getMostPopularAuthors(books, authors) {
-  const authorCounts = authors.map((author) => {
-    const count = getBooksBorrowedCount(books, author.id);
-    return { name: `${author.name.first} ${author.name.last}`, count };
-  });
-
-  const sortedAuthors = authorCounts.sort((authorA, authorB) => authorB.count - authorA.count);
-  return sortedAuthors.slice(0, 5);
-}
 
 function getMostCommonGenres(books) {
   let count = {};
@@ -58,16 +50,22 @@ function getMostPopularBooks(books) {
    return sorted.slice(0, 5);
 }
 
+function isBookCheckedOut(book) {
+  const latestTransaction = book.borrows[0];
+  return !latestTransaction.returned;
+}
+
 function getBooksBorrowedCount(books) {
   let checkedOut = [];
   for (let i = 0; i < books.length; i++) {
-    const latestTransaction = books[i].borrows[0];
-    if (latestTransaction.returned === false) {
-      checkedOut.push(books[i]);
+    const book = books[i];
+    if (isBookCheckedOut(book)) {
+      checkedOut.push(book);
     }
   }
   return checkedOut.length;
 }
+
 
 function getMostPopularAuthors(books, authors) {
   const authorCounts = authors.map((author) => {
